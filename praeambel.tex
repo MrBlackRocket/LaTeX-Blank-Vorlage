@@ -1,0 +1,232 @@
+\usepackage{ifthen}
+
+\usepackage[utf8]{inputenc} % Schriftsatz utf8 verwenden
+\usepackage[T1]{fontenc} % T1-Fonts
+\usepackage[latin,english,ngerman]{babel} % Deutsche Sonderzeichen und Silbentrennung 
+\usepackage{mathpazo}
+\usepackage[scaled=.95]{helvet}
+\usepackage{courier}
+\usepackage{marvosym} % diverse Symbole
+\usepackage{wasysym} % diverse Symbole 
+\usepackage{eulervm} % Mathematische Symbole 
+\usepackage{amssymb} % Mathematische Symbole 
+\usepackage{pifont} % einige Befehle brauchen pifont (Symbole)
+\usepackage[babel,german=quotes]{csquotes}
+
+\usepackage{tabularx} % bessere Tabellen
+\usepackage[para]{threeparttable} %Fussnoten innerhalb von Tabellen
+\usepackage{array} % wird von colortbl benötigt
+\usepackage{colortbl} % erlaubt Farbige Zellen
+\usepackage{soul}
+\usepackage[table]{xcolor} % alternierende farbige Tabellenzeilen
+\usepackage{booktabs} % Gestaltung der horizontalen Linien innerhalb einer Tabelle
+\usepackage{multirow}
+\usepackage{longtable}
+
+\usepackage{xspace} 
+\usepackage{geometry} 
+\usepackage{setspace}
+\usepackage{calc} 
+\usepackage{microtype} 
+\usepackage{setspace}
+\usepackage{marginnote} % für Randnotizen
+
+\usepackage[style=authortitle-dw,backend=biber]{biblatex}
+
+\geometry{a4paper,left=25mm,right=25mm,top=15mm,bottom=15mm,includeheadfoot}
+\clubpenalty = 10000
+\widowpenalty = 10000
+\displaywidowpenalty = 10000
+\setlength{\parindent}{0pt}
+
+\usepackage[headsepline,footsepline]{scrpage2}
+\usepackage{totpages}
+
+\usepackage{enumitem} %Anpassbare Enumerates/Itemizes
+
+% Define the default values for these commands
+\newcommand{\Universitaet}{}
+\newcommand{\Title}{}
+\newcommand{\Datum}{}
+\newcommand{\Fakultaet}{}
+\newcommand{\Semester}{}
+\newcommand{\Dozent}{}
+\newcommand{\Autor}{}
+\newcommand{\Matrikelnr}{}
+\newcommand{\Seminar}{}
+\newcommand{\Kurzbeschreibung}{}
+\newcommand{\Schluesselwoerter}{}
+\newcommand{\Blank}{}
+
+\makeatletter
+% change the values if the user sets these commands
+\newcommand{\SetTitle}[1]{\renewcommand{\Title}{#1}}
+\newcommand{\SetUniversitaet}[1]{\renewcommand{\Universitaet}{#1}}
+\newcommand{\SetFakultaet}[1]{\renewcommand{\Fakultaet}{#1}}
+\newcommand{\SetSemester}[1]{\renewcommand{\Semester}{#1}}
+\newcommand{\SetDozent}[1]{\renewcommand{\Dozent}{#1}}
+\newcommand{\SetAutor}[1]{\renewcommand{\Autor}{#1}}
+\newcommand{\SetMatrikelnr}[1]{\renewcommand{\Matrikelnr}{#1}}
+\newcommand{\SetDatum}[1]{\renewcommand{\Datum}{#1}}
+\newcommand{\SetSeminar}[1]{\renewcommand{\Seminar}{#1}}
+\newcommand{\SetKurzbeschreibung}[1]{\renewcommand{\Kurzbeschreibung}{#1}}
+\newcommand{\SetSchluesselwoerter}[1]{\renewcommand{\Schluesselwoerter}{#1}}
+\newcommand{\SetLiteratur}[1]{\bibliography{#1}}
+\makeatother
+	
+% Kopf und Fußbereich
+\clearscrheadfoot
+\pagestyle{scrheadings}
+\setkomafont{pageheadfoot}{\footnotesize}
+
+\makeatletter
+	\ihead{\small \Autor \\ Matrikelnummer: \Matrikelnr}
+	\chead{} 
+	\ohead{\textbf{\small \Title} \\  \small \textbf{\Datum}}
+	\ifoot{\Title} \cfoot{} \ofoot[\thepage{} / \pageref{TotPages}]{\thepage{} / \pageref{TotPages}}
+\makeatother
+\makeatletter
+\defpagestyle{plainwfl}{
+(0pt,0pt)
+{} {} {
+	\begin{minipage}[b]{90mm}
+	\footnotesize
+		\begin{flushleft}
+			\textbf{\Universitaet} \\
+			\textit{\Fakultaet} \\
+			Seminar: \Seminar \\
+			DozentIn: \Dozent
+		\end{flushleft}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[b]{69mm} 
+		\begin{flushright}
+			AutorIn: \Autor \\
+			Matrikelnummer: \Matrikelnr \\
+			Datum: \today \\
+			\Semester
+		\end{flushright}
+	\end{minipage}
+}
+(\textwidth,.4pt)
+}{
+(\textwidth,.4pt)
+{} {} {
+	\begin{minipage}[b]{79mm}
+		\begin{flushleft}
+			\Title
+		\end{flushleft}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[b]{79mm} 
+		\begin{flushright}
+			\thepage{} / \pageref{TotPages}
+		\end{flushright}
+	\end{minipage}
+}
+(0pt,0pt)
+}
+\makeatother
+
+% Hyperlinks und interne PDF-Verweise
+\usepackage[
+       % Farben fuer die Links
+       colorlinks=true,         % Links erhalten Farben statt Kaeten
+       urlcolor=black,    % \href{...}{...} external (URL)
+       filecolor=black,  % \href{...} local file
+       linkcolor=black,  % \ref{...} and \pageref{...}
+       citecolor=black,
+       menucolor=black,
+       % Links
+       raiselinks=true,			% calculate real height of the link
+       backref=false,           % Backlinks im Literaturverzeichnis (section, slide, page, none)
+       pagebackref=false,       % Backlinks im Literaturverzeichnis mit Seitenangabe
+       verbose,
+       hyperindex=true,         % backlinkex index
+       linktocpage=true,        % Inhaltsverzeichnis verlinkt Seiten
+       hyperfootnotes=true,     % Keine Links auf Fussnoten
+       % Bookmarks
+       bookmarks=false,         % Erzeugung von Bookmarks
+       % Anchors
+       plainpages=false,        % Anchors even on plain pages ?
+       pageanchor=true,         % Pages are linkable
+       pdfstartview=FitH,       % Dokument wird Fit Width geaefnet
+       pdfpagemode=UseOutlines, % Bookmarks im Viewer anzeigen
+       pdfpagelabels=true,      % set PDF page labels
+]{hyperref}
+
+% PDF Informationen
+\makeatletter
+\AtBeginDocument{
+  \hypersetup{
+    pdftitle={\Title},
+    pdfauthor={\Autor},
+    pdfsubject={\Kurzbeschreibung},
+    pdfkeywords={\Schluesselwoerter}
+  }
+}
+\makeatother
+
+% Endnotes
+\usepackage{endnotes}
+\let\footnote=\endnote
+\def\enotesize{\normalsize}
+\renewcommand{\notesname}{Notes} 
+\makeatletter
+	\def\@makeentext#1{\theenmark) #1}
+\makeatother
+
+\newcommand{\notes}{
+  \begingroup
+  \parindent 0pt
+  \leftmargin 2.5cm
+  \parskip -1ex
+  \def\enotesize{\normalsize}
+  \theendnotes
+  \endgroup
+}
+\usepackage{hyperendnotes} 
+
+\makeatletter 
+	% Redefine the sectioning commands \section \subsection and \subsubsection
+	\renewcommand\section{\@startsection
+		{section}{2}{0mm}{.6\baselineskip}{0.1\baselineskip}{\normalfont\large\textbf}
+	}
+	\renewcommand\subsection{\@startsection
+		{subsection}{2}{0mm}{.6\baselineskip}{0.1\baselineskip}{\normalfont\normalsize\textbf}
+	}
+	\renewcommand\subsubsection{\@startsection
+		{subsubsection}{2}{0mm}{.6\baselineskip}{0.1\baselineskip}{\normalfont\normalsize\textbf}
+	}
+\makeatother 
+
+% für lange Zitate
+\newenvironment{bquote}% 
+   {\begin{quotation}\small}% 
+   {\end{quotation}}% 
+\SetBlockEnvironment{bquote}
+
+% für kurze Zitate
+\newenvironment{squote}% 
+   {\begin{quote}\small}% 
+   {\end{quote}}% 
+\SetBlockEnvironment{squote}
+
+% Hinweis und Warnung
+\newcommand*{\Hinweis}[1]{\textbf{Hinweis:} #1}
+\newcommand*{\Warnung}[1]{\textbf{Warnung:} #1}
+\newcommand*{\Achtung}[1]{\textbf{Achtung:} #1}
+
+\renewcommand\maketitle{
+	\vspace*{0mm}\thispagestyle{plainwfl}
+	\begin{center}
+		\Large{\textbf{\Title}} \\
+	\end{center}
+	\onehalfspacing 
+}   
+
+\newcommand{\makeliteratur}{
+	\singlespacing
+	\nocite{*}
+	\printbibliography
+}
