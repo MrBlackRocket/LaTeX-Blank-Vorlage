@@ -1,10 +1,11 @@
-\documentclass[oneside,12pt,headlines=1.5]{scrreprt}
+\documentclass[oneside,12pt,headlines=1.5, chapterprefix=false, numberedsection=nolabel, nonumberlist,BCOR12mm,abstract]{scrreprt}
 
 \input{./praeambel.tex}
 \input{./boxen.tex}
 \usepackage{blindtext}
 
 \SetTitle{Ideenpapier}
+\SetShortTitle{Ideenpapier}
 \SetUniversitaet{Europa Universität Viadrina}
 \SetDatum{\today}
 \SetFakultaet{Fakultät der Kulturwissenschaften}
@@ -12,11 +13,10 @@
 \SetDozent{Professor Moriarty}
 \SetAutor{Max Mustermann}
 \SetMatrikelnr{0815}
-\SetSeminar{Europäische Identität und Kulturtourismus}
+\SetSeminar{Die Geschichte von Jack the Ripper}
 \SetKurzbeschreibung{Diese ist ein Ideenpapier}
-\SetSchluesselwoerter{Ideenpapier, Vorlage, Demo, Seminar, CC-BY-SA 3.0}
+\SetSchluesselwoerter{Ideenpapier, Vorlage, Demo, Seminar, CC-BY-SA 4.0}
 %\SetLiteratur{CulturalTurns}
-
 \begin{document}
 \maketitle
 
@@ -32,4 +32,34 @@
 \selectlanguage{\ngerman}
 \blindtext 
 
+\section*{Transkription}
+\linenumbers[21]
+\begin{dialogue}
+\ttfamily
+\fontdimen2\font=0.4em
+\fontdimen3\font=0.2em
+\fontdimen4\font=0.1em
+\fontdimen7\font=0.1em
+\speak{Y1} Was stellst=de dir denn  \uline{noch} gewaltiger vor als das
+Weltsozialforum rum in Bombay?
+\speak{Fm} \textbf{Noch \uline{viel viel} besser}. (2) Die ganze {$\circ$}Welt{$\circ$} muss
+@Fernsehen@ schauen; ((springt auf))
+\speak{Mm} \hspace{2em}{$\lfloor$}  @(5)@
+\speak{Fm} \textbf{Das is \uline{viel viel} gewaltiger.}
+\speak{Mm} \hspace{13.75em}{$\lfloor$} @(3)@
+\speak{Bm} Beim kommenden Fussballweltmeisterschaftsendspiel-
+\speak{? f} \textbf{Ja genau; da machen wir} mal=ne ( \hspace{5.5em} )
+\speak{Dm} \hspace{8em}{$\lfloor$} (Da lassen wir=ne Demonstration starten)
+genau
+\speak{Mm} \hspace{5em}{$\lfloor$} @( \hspace{21.5em} )@
+\speak{Sf} \hspace{9em}{$\lfloor$} Super gut \hspace{8.5em}{$\lfloor$} (Das
+is=ne gute Idee)
+\end{dialogue} 
+\par
+\nolinenumbers
+\parskip 11pt
+
+%\nocite{*}
+%\sloppy
+%\printbibliography[heading=subbibintoc]
 \end{document}

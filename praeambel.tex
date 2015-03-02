@@ -1,17 +1,16 @@
 \usepackage{ifthen}
 
-\usepackage[utf8]{inputenc} % Schriftsatz utf8 verwenden
+\usepackage[utf8]{luainputenc}
 \usepackage[T1]{fontenc} % T1-Fonts
-\usepackage[latin,english,ngerman]{babel} % Deutsche Sonderzeichen und Silbentrennung 
-\usepackage{mathpazo}
-\usepackage[scaled=.95]{helvet}
+\usepackage[polish,swedish,latin,english,ngerman]{babel} % Deutsche Sonderzeichen und Silbentrennung 
+\usepackage{lmodern}
 \usepackage{courier}
 \usepackage{marvosym} % diverse Symbole
 \usepackage{wasysym} % diverse Symbole 
 \usepackage{eulervm} % Mathematische Symbole 
-\usepackage{amssymb} % Mathematische Symbole 
+%\usepackage{amssymb} % Mathematische Symbole 
 \usepackage{pifont} % einige Befehle brauchen pifont (Symbole)
-\usepackage[babel,german=quotes]{csquotes}
+\usepackage[babel,german=guillemets]{csquotes}
 
 \usepackage{tabularx} % bessere Tabellen
 \usepackage[para]{threeparttable} %Fussnoten innerhalb von Tabellen
@@ -22,22 +21,38 @@
 \usepackage{booktabs} % Gestaltung der horizontalen Linien innerhalb einer Tabelle
 \usepackage{multirow}
 \usepackage{longtable}
+\usepackage{luatextra}
 
 \usepackage{xspace} 
 \usepackage{geometry} 
 \usepackage{setspace}
 \usepackage{calc} 
-\usepackage{microtype} 
+\usepackage[letterspace=100]{microtype} 
 \usepackage{setspace}
 \usepackage{marginnote} % für Randnotizen
 
 \usepackage[style=authortitle-dw,backend=biber]{biblatex}
 
-\geometry{a4paper,left=25mm,right=25mm,top=15mm,bottom=15mm,includeheadfoot,footskip=3mm}
-\clubpenalty = 10000
-\widowpenalty = 10000
-\displaywidowpenalty = 10000
-\setlength{\parindent}{0pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Schusterjungen/Hurenkinder
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clubpenalty = 10000     % schliesst Schusterjungen aus
+\widowpenalty = 10000    % schliesst Hurenkinder aus
+\displaywidowpenalty = 10000     % und nochmal für Formeln
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TransLaTex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{lineno}
+\usepackage{dialogue}
+\usepackage[htt]{hyphenat}
+\usepackage{everysel}
+\usepackage[normalem]{ulem}
+
+
+\typearea[current]{calc} 
+\geometry{a4paper,left=25mm,right=25mm,top=15mm,bottom=15mm,includeheadfoot,footskip=10mm}
+
 
 \usepackage[headsepline,footsepline]{scrpage2}
 \usepackage{totpages}
@@ -45,9 +60,11 @@
 \usepackage{enumitem} %Anpassbare Enumerates/Itemizes
 \setlist{noitemsep}
 
+
 % Define the default values for these commands
 \newcommand{\Universitaet}{}
 \newcommand{\Title}{}
+\newcommand{\ShortTitle}{}
 \newcommand{\Datum}{}
 \newcommand{\Fakultaet}{}
 \newcommand{\Semester}{}
@@ -62,6 +79,7 @@
 \makeatletter
 % change the values if the user sets these commands
 \newcommand{\SetTitle}[1]{\renewcommand{\Title}{#1}}
+\newcommand{\SetShortTitle}[1]{\renewcommand{\ShortTitle}{#1}}
 \newcommand{\SetUniversitaet}[1]{\renewcommand{\Universitaet}{#1}}
 \newcommand{\SetFakultaet}[1]{\renewcommand{\Fakultaet}{#1}}
 \newcommand{\SetSemester}[1]{\renewcommand{\Semester}{#1}}
@@ -83,11 +101,11 @@
 \makeatletter
 	\ihead{\small \Autor \\ Matrikelnummer: \Matrikelnr}
 	\chead{} 
-	\ohead{\textbf{\small \Title} \\  \small \textbf{\Datum}}
-	\ifoot{\Title} \cfoot{} \ofoot[\thepage{} / \pageref{TotPages}]{\thepage{} / \pageref{TotPages}}
+	\ohead{\textbf{\small \ShortTitle} \\  \small \textbf{\Datum}}
+	\ifoot{\small{Dieses Dokument ist verfügbar unter der \href{http://creativecommons.org/licenses/by-sa/4.0/}{CC-BY-SA 4.0 Lizenz.}}} \cfoot{} \ofoot[\thepage{} / \pageref{TotPages}]{\thepage{} / \pageref{TotPages}}
 \makeatother
 \makeatletter
-\defpagestyle{plainwfl}{
+\defpagestyle{plain}{
 (0pt,0pt)
 {} {} {
 	\begin{minipage}[b]{90mm}
@@ -113,13 +131,13 @@
 }{
 (\textwidth,.4pt)
 {} {} {
-	\begin{minipage}[b]{79mm}
+	\begin{minipage}[b]{110mm}
 		\begin{flushleft}
-			\Title
+			\small{Dieses Dokument ist verfügbar unter der \href{http://creativecommons.org/licenses/by-sa/4.0/}{CC-BY-SA 4.0 Lizenz.}}
 		\end{flushleft}
 	\end{minipage}
 	\hfill
-	\begin{minipage}[b]{79mm} 
+	\begin{minipage}[b]{8mm} 
 		\begin{flushright}
 			\thepage{} / \pageref{TotPages}
 		\end{flushright}
@@ -170,7 +188,7 @@
 
 % Endnotes
 \usepackage{endnotes}
-\let\footnote=\endnote
+%\let\footnote=\endnote
 \def\enotesize{\normalsize}
 \renewcommand{\notesname}{Notes} 
 \makeatletter
@@ -199,6 +217,7 @@
 	\renewcommand\subsubsection{\@startsection
 		{subsubsection}{2}{0mm}{.6\baselineskip}{0.1\baselineskip}{\normalfont\normalsize\textbf}
 	}
+	\renewcommand*\chapterheadstartvskip{\vspace{-\topskip}}
 \makeatother 
 
 % für lange Zitate
@@ -219,15 +238,16 @@
 \newcommand*{\Achtung}[1]{\textbf{Achtung:} #1}
 
 \renewcommand\maketitle{
-	\vspace*{0mm}\thispagestyle{plainwfl}
+	\vspace*{0mm}\thispagestyle{plain}
 	\begin{center}
 		\Large{\textbf{\Title}} \\
 	\end{center}
 	\onehalfspacing 
 }   
 
+
 \newcommand{\makeliteratur}{
-	\singlespacing
+	%\singlespacing
 	\nocite{*}
 	\printbibliography
 }
